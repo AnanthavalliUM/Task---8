@@ -1,0 +1,113 @@
+a.Get all the countries from the Asia continent /region using the Filter function
+
+var xhr=new XMLHttpRequest();                  
+xhr.open("GET", "https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+xhr.send();
+xhr.onload=function() {                       
+    if(xhr.status>=200&& xhr.status<300){
+        var data=JSON.parse(xhr.response);     
+        let info=data.filter((nation)=>{       
+           for(var i=0; i<data.length; i++) {
+            if(nation.region === "Asia")
+            return nation.name;
+            }
+            });
+            console.log(info);
+        }
+    
+    else{
+        console.log("Data not available");    
+    }
+}
+
+b.Get all the countries with a population of less than 2 lakhs using Filter function
+
+var xhr=new XMLHttpRequest();                  
+xhr.open("GET", "https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+xhr.send();
+xhr.onload=function() {                       
+    if(xhr.status>=200&& xhr.status<300){
+        var data=JSON.parse(xhr.response);     
+        let info=data.filter((nation)=>{       
+           for(var i=0; i < data.length; i++) {
+            if(nation.population < 200000)
+            return nation.name;
+            }
+            });
+            console.log(info);
+        }
+    
+    else{
+        console.log("Data not available");    
+    }
+}
+
+c.Print the following details name, capital, flag using forEach function
+
+var xhr=new XMLHttpRequest();                  
+xhr.open("GET", "https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+xhr.send();
+ 
+xhr.onload=function() {                        
+    if(xhr.status>=200&& xhr.status<300){
+        var data=JSON.parse(xhr.response);     
+      
+         data.forEach((ele) => console.log(`${ele.name}, ${ele.capital}, ${ele.flag}`));
+        }
+      }
+  
+  
+ d.Print the total population of countries using reduce function
+
+var xhr=new XMLHttpRequest();                  
+xhr.open("GET", "https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+xhr.send();
+xhr.onload=function() {                        
+    if(xhr.status>=200&& xhr.status<300){
+        var data=JSON.parse(xhr.response);     
+         let totalPopulation=data.reduce((acc,nation)=>{       
+            return acc+nation.population;
+            },0)
+            console.log(`
+            Total Population: ${totalPopulation}         
+            `);
+        }
+    
+    else{
+        console.log("Data not available");
+    }
+}
+
+e.Print the country which uses US Dollars as currency.
+
+var xhr=new XMLHttpRequest();                  
+      xhr.open("GET", "https://raw.githubusercontent.com/rvsp/restcountries-json-data/master/res-countries.json");
+      xhr.send();
+      
+      xhr.onload=function() {                        
+          if(xhr.status>=200&& xhr.status<300){
+              var data=JSON.parse(xhr.response);     
+            
+              var user=data.filter((ele)=>ele.currencies[0].symbol==="$").map((ele)=>ele.name);  
+              console.log(user);
+              }
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
